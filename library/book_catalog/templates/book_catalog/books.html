@@ -4,4 +4,31 @@
 
 {% block content %}
     <p>{{ content }}</p>
+    <div class="cards">
+        {% for book in books %}
+            <div class="book">
+                <div class="cover">
+                    {% if book.image %}
+                        <a href="#">
+                            <img src="{{ book.image.url }}" alt="{{ book.name }}">
+                        </a>
+                    {% else %}
+                        <a href="#">
+                            <img src="{% static "library_static/images/image-not-found.jpg" %}" alt="...">
+                        </a>
+                    {% endif %}
+                </div>
+                <div class="description">
+                    <p class="title">{{ book.title }}<br>
+                        <span class="author">{{ book.author.first_name }} {{ book.author.last_name }}</span>
+                    </p>
+                </div>
+
+                <div class="btn-group">
+                    <a href="#" class="btn btn-sm btn-outline-secondary">Забронировать</a>
+                    <a href="#" class="btn btn-sm btn-outline-secondary">Выдать</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock content %}

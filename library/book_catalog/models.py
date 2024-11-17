@@ -1,11 +1,29 @@
-from tabnanny import verbose
 from django.db import models
+
+
+class Author(models.Model):
+    first_name = models.CharField(max_length=128, verbose_name="Имя")
+    last_name = models.CharField(max_length=128, verbose_name="Фамилия")
+
+    class Meta:
+        db_table = "author"
+        verbose_name = "Автора"
+        verbose_name_plural = "Авторы"
+
+
+class Genre(models.Model):
+    genre = models.CharField(max_length=20, unique=True, verbose_name="Жанр")
+
+    class Meta:
+        db_table = "genre"
+        verbose_name = "Жанр"
+        verbose_name_plural = "Жанры"
 
 
 class BookCatalog(models.Model):
     title = models.CharField(max_length=128, unique=True, verbose_name="Название")
-    author = models.CharField(max_length=128, verbose_name="Автор")
-    genre = models.CharField(max_length=50, verbose_name="Жанр")
+    author = models.ForeignKey(Author, on_delete=models.CASCADE, verbose_name="Автор")
+    genre = models.ForeignKey(Genre, on_delete=models.CASCADE, verbose_name="Жанр")
     age_restriction = models.IntegerField(verbose_name="Возрастное ограничение")
     copies_number = models.IntegerField(verbose_name="Количество экземпляров")
     annotation = models.TextField(blank=True, null=True, verbose_name="Аннотация")
@@ -33,7 +51,9 @@ class BookInstanceStatus(models.Model):
 
 
 class BookInstance(models.Model):
-    book = models.ForeignKey(BookCatalog, on_delete=models.CASCADE, verbose_name="Книг")
+    book = models.ForeignKey(
+        BookCatalog, on_delete=models.CASCADE, verbose_name="Книга"
+    )
     status = models.ForeignKey(
         BookInstanceStatus, on_delete=models.CASCADE, verbose_name="Статус"
     )

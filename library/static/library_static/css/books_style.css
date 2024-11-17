@@ -1,0 +1,63 @@
+.cards {
+    margin: 0 auto;
+    max-width: 910px;
+}
+
+.book {
+    display: inline-block;
+    width: 230px;
+    height: 400px;
+    box-shadow: 0 0 20px #aaa;
+    margin: 25px;
+    padding: 10px 10px 0 10px;
+    vertical-align: top;
+    transition: height 1s;
+}
+
+.book .cover {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+.book img {
+    max-width: 80%;
+    height: auto;
+    transition: transform 0.2s;
+}
+
+.book img:hover {
+    transform: scale(1.05);
+}
+
+.title {
+    font-size: 14px;
+    margin: 0;
+}
+
+.author {
+    font-size: 14px;
+    color: #666;
+}
+
+.btn-group {
+    margin-top: 17px;
+}
+
+.btn {
+    font-size: 12px;
+    padding: 12px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: black;
+    background: rgba(255, 255, 255, 0.79);
+    border: 2px solid rgba(133, 131, 131, 0.2);
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgb(0, 0, 0, .2);
+    transition: color 0.2s linear;
+}
+
+.btn:hover {
+    background: white;
+    box-shadow: 0 0 20px rgb(0, 0, 0, .2);
+}
