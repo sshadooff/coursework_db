@@ -16,9 +16,11 @@ def books(request):
     return render(request, "book_catalog/books.html", context)
 
 
-def book(request):
+def book(request, book_slug):
+
+    book = BookCatalog.objects.get(slug=book_slug)
+
     context = {
-        "title": "Информация о книге",
-        "content": "ИНФОРМАЦИЯ О КНИГЕ"
+        "book": book,
     }
     return render(request, "book_catalog/book.html", context)

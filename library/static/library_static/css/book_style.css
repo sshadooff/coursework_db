@@ -1,0 +1,72 @@
+.card {
+    display: flex;
+    overflow: hidden;
+    width: 1000px;
+    margin: 10px auto;
+}
+
+.image-side {
+    flex: 1;
+}
+
+.image-side img {
+    width: auto;
+    height: 500px;
+}
+
+.info-side {
+    flex: 1;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.info-item {
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    display: flex;
+}
+
+.info-item label {
+    font-weight: bold;
+    margin-right: 10px;
+    flex: 0 0 100px;
+}
+
+.info-item span {
+    flex: 1;
+}
+
+.card h2 {
+    margin: 0 0 15px 0;
+}
+
+.card img {
+    border-bottom: 1px solid #ccc;
+}
+
+.btn-container {
+    text-align: center; /* Центрируем кнопку */
+    margin-top: 20px; /* Отступ сверху для лучшего визуального оформления */
+}
+
+.btn-book {
+    font-size: 20px;
+    padding: 12px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: black;
+    background: rgba(255, 255, 255, 0.79);
+    border: 2px solid rgba(133, 131, 131, 0.2);
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgb(0, 0, 0, .2);
+    transition: color 0.2s linear;
+}
+
+.btn-book:hover {
+    background: white;
+    box-shadow: 0 0 20px rgb(0, 0, 0, .2);
+}

@@ -9,11 +9,11 @@
             <div class="book">
                 <div class="cover">
                     {% if book.image %}
-                        <a href="#">
+                        <a href="{% url "book_catalog:book" book.slug %}">
                             <img src="{{ book.image.url }}" alt="{{ book.name }}">
                         </a>
                     {% else %}
-                        <a href="#">
+                        <a href="{% url "book_catalog:book" book.slug %}">
                             <img src="{% static "library_static/images/image-not-found.jpg" %}" alt="...">
                         </a>
                     {% endif %}

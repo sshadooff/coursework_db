@@ -3,5 +3,44 @@
 {% load static %}
 
 {% block content %}
-    <p>{{ content }}</p>
+    <div class="card">
+        <div class="image-side">
+            {% if book.image %}
+                <img src="{{ book.image.url }}" alt="{{ book.name }}">
+            {% else %}
+                <img src="{% static "library_static/images/image-not-found.jpg" %}" alt="...">
+            {% endif %}
+        </div>
+        <div class="info-side">
+            <h2>{{ book.title }}</h2>
+            <div class="info-item">
+                <label>ID:</label>
+                <span>{{ book.id }}</span>
+            </div>
+            <div class="info-item">
+                <label>Автор:</label>
+                <span>{{ book.author }}</span>
+            </div>
+            <div class="info-item">
+                <label>Жанр:</label>
+                <span>{{ book.genre }}</span>
+            </div>
+            <div class="info-item">
+                <label>Возрастное ограничение:</label>
+                <span>{{ book.age_restriction }}</span>
+            </div>
+            <div class="info-item">
+                <label>Количество экземпляров:</label>
+                <span>{{ book.copies_number }}</span>
+            </div>
+            <div class="info-item">
+                <label>Аннотация:</label>
+                <span>{{ book.annotation }}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="btn-container" style="text-align: center; margin-top: 20px;">
+        <a href="#" class="btn-book">Забронировать</a>
+    </div>
 {% endblock content %}
