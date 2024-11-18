@@ -4,6 +4,7 @@
 }
 
 .book {
+    position: relative;
     display: inline-block;
     width: 230px;
     height: 400px;
@@ -16,7 +17,7 @@
 
 .book .cover {
     width: 100%;
-    height: auto;
+    height: 65%;
     overflow: hidden;
 }
 
@@ -41,7 +42,11 @@
 }
 
 .btn-group {
-    margin-top: 17px;
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 0;
 }
 
 .btn {

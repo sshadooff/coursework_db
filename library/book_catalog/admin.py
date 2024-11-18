@@ -3,6 +3,7 @@ from django.contrib import admin
 from book_catalog.models import (
     Author,
     Genre,
+    Publisher,
     BookCatalog,
     BookInstance,
     BookInstanceStatus,
@@ -22,3 +23,4 @@ class BookInstanceAdmin(admin.ModelAdmin):
 admin.site.register(BookInstanceStatus)
 admin.site.register(Author)
 admin.site.register(Genre)
+admin.site.register(Publisher)
