@@ -25,15 +25,9 @@ from library import settings
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("main.urls", namespace="main")),
-    path("employees/", include("employees.urls", namespace="employees")),
-    path("readers/", include("file_cabinet.urls", namespace="readers")),
     path("books/", include("book_catalog.urls", namespace="books")),
     path("issuance/", include("issuance.urls", namespace="issuance")),
     path("booking/", include("booking.urls", namespace="booking")),
-    path(
-        "personal_account/",
-        include("personal_account.urls", namespace="personal_account"),
-    ),
 ]
 
 if settings.DEBUG:

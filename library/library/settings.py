@@ -40,12 +40,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "main",
-    "employees",
-    "file_cabinet",
     "book_catalog",
     "issuance",
     "booking",
-    "personal_account",
 ]
 
 MIDDLEWARE = [
@@ -63,7 +60,7 @@ ROOT_URLCONF = "library.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [

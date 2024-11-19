@@ -1,0 +1,1 @@
+[{"model": "book_catalog.bookinstancestatus", "pk": 1, "fields": {"status": "Свободна"}}, {"model": "book_catalog.bookinstancestatus", "pk": 2, "fields": {"status": "Забронирована"}}, {"model": "book_catalog.bookinstancestatus", "pk": 3, "fields": {"status": "Выдана"}}, {"model": "book_catalog.bookinstancestatus", "pk": 4, "fields": {"status": "Потеряна"}}]
