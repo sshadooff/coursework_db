@@ -28,6 +28,7 @@ urlpatterns = [
     path("books/", include("book_catalog.urls", namespace="books")),
     path("issuance/", include("issuance.urls", namespace="issuance")),
     path("booking/", include("booking.urls", namespace="booking")),
+    path("user/", include("users.urls", namespace="user")),
 ]
 
 if settings.DEBUG:
