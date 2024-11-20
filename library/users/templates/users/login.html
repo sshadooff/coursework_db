@@ -4,29 +4,34 @@
 
 {% block content %}
     <div class="container-form">
-        <form class="login-form" action="">
-            <h1>Авторизация</h1>
+        <h1>Авторизация</h1>
+        <form class="login-form" action="{% url "users:login" %}" method="post">
+            {% csrf_token %}
+
             <div class="form-group">
-                <label class="font-weight-bold">
-                    Имя пользователя
-                    <span class="text-danger">*</span>
-                </label>
-                <input type="text" placeholder="Введите логин" required>
+                <label for="id_username" class="font-weight-bold"> Имя пользователя: </label>
+                <input type="text" class="input-field"
+                value="{% if form.username.value %}{{ form.username.value }}{% endif %}"
+                name="username"
+                id="id_username"
+                placeholder="Введите логин"
+                required>
             </div>
             
             <div class="form-group">
-                <label class="font-weight-bold">
-                    Пароль
-                    <span class="text-danger">*</span>
-                </label>
-                <input type="password" placeholder="Введите пароль" required>
+                <label for="id_password" class="font-weight-bold"> Пароль: </label>
+                <input type="password" class="input-field"
+                name="password"
+                id="id_password"
+                placeholder="Введите пароль"
+                required>
             </div>
 
             <button type="submit" class="btn">Войти</button>
-
-            <div class="register-link">
-                <p>У вас нет аккаунта? <a href="{% url "users:registration" %}">Регистрация</a></p>
-            </div>
         </form>
+
+        <div class="register-link">
+            <p>У вас нет аккаунта? <a href="{% url "users:registration" %}">Регистрация</a></p>
+        </div>
     </div>
 {% endblock content %}

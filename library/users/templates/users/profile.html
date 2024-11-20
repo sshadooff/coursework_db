@@ -4,46 +4,43 @@
 
 {% block content %}
     <div class="container-form">
+        <h1>Профиль пользователя</h1>
         <form class="profile-form" action="">
-            <h1>Профиль пользователя</h1>
-
             <div class="form-group">
-                <label class="font-weight-bold">
-                    ФИО
-                    <span class="text-danger">*</span>
-                </label>
-                <input type="text" placeholder="Введите ФИО" required>
+                <label class="font-weight-bold"> Имя: </label>
+                <input type="text" class="input-field" placeholder="Введите имя" required>
             </div>
 
             <div class="form-group">
-                <label class="font-weight-bold">
-                    Дата рождения
-                    <span class="text-danger">*</span>
-                </label>
-                <input type="date" required>
+                <label class="font-weight-bold"> Фамилия: </label>
+                <input type="text" class="input-field" placeholder="Введите фамилию" required>
             </div>
 
             <div class="form-group">
-                <label class="font-weight-bold">
-                    Адрес электронной почты
-                    <span class="text-danger">*</span>
-                </label>
-                <input type="email" placeholder="Введите адрес электронной почты" required>
+                <label class="font-weight-bold"> Имя пользователя: </label>
+                <input type="text" class="input-field" placeholder="Введите логин" required>
             </div>
 
             <div class="form-group">
-                <label class="font-weight-bold">
-                    Номер телефона
-                    <span class="text-danger">*</span>
-                </label>
-                <input type="tel" placeholder="Введите номер телефона" required>
+                <label class="font-weight-bold"> Дата рождения: </label>
+                <input type="date" class="input-field" required>
             </div>
 
+            <div class="form-group">
+                <label class="font-weight-bold"> Адрес электронной почты: </label>
+                <input type="email" class="input-field" placeholder="Введите адрес электронной почты" required>
+            </div>
+
+            <div class="form-group">
+                <label class="font-weight-bold"> Номер телефона: </label>
+                <input type="tel" class="input-field" placeholder="Введите номер телефона" required>
+            </div>
+            
             <button type="submit" class="btn">Сохранить</button>
-
-            <div class="logout-link">
-                <p>Хотите выйти? <a href="{% url 'users:logout' %}">Выйти</a></p>
-            </div>
         </form>
+
+        <div class="logout-link">
+            <p>Хотите выйти? <a href="{% url 'users:logout' %}">Выйти</a></p>
+        </div>
     </div>
 {% endblock content %}
