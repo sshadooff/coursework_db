@@ -8,6 +8,10 @@
         <form class="login-form" action="{% url "users:login" %}" method="post">
             {% csrf_token %}
 
+            {% if request.GET.next %}
+                <input type="hidden" name="next" value="{{request.GET.next}}">
+            {% endif %}
+
             <div class="form-group">
                 <label for="id_username" class="font-weight-bold"> Имя пользователя: </label>
                 <input type="text" class="input-field"

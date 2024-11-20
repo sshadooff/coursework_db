@@ -5,35 +5,78 @@
 {% block content %}
     <div class="container-form">
         <h1>Профиль пользователя</h1>
-        <form class="profile-form" action="">
+        <form class="profile-form" action="{% url "users:profile" %}" method="post">
+            {% csrf_token %}
+
             <div class="form-group">
-                <label class="font-weight-bold"> Имя: </label>
-                <input type="text" class="input-field" placeholder="Введите имя" required>
+                <label for="id_first_name" class="font-weight-bold"> Имя: </label>
+                <input type="text" class="input-field"
+                    id="id_firsr_name"
+                    name="first_name"
+                    placeholder="Введите имя"
+                    value="{{ form.first_name.value }}" required>
+                {% if form.first_name.errors %}
+                    <div class="alert alert-danger alert-dismissible fade show">{{form.first_name.errors}}</div>
+                {% endif %}
             </div>
 
             <div class="form-group">
-                <label class="font-weight-bold"> Фамилия: </label>
-                <input type="text" class="input-field" placeholder="Введите фамилию" required>
+                <label for="id_last_name" class="font-weight-bold"> Фамилия: </label>
+                <input type="text" class="input-field"
+                    id="id_last_name"
+                    name="last_name"
+                    placeholder="Введите фамилию"
+                    value="{{ form.last_name.value }}" required>
+                {% if form.last_name.errors %}
+                    <div class="alert alert-danger alert-dismissible fade show">{{form.last_name.errors}}</div>
+                {% endif %}
             </div>
 
             <div class="form-group">
-                <label class="font-weight-bold"> Имя пользователя: </label>
-                <input type="text" class="input-field" placeholder="Введите логин" required>
+                <label for="id_username" class="font-weight-bold"> Имя пользователя: </label>
+                <input type="text" class="input-field"
+                    id="id_username"
+                    name="username"
+                    placeholder="Введите логин"
+                    value="{{ form.username.value }}" required>
+                {% if form.username.errors %}
+                    <div class="alert alert-danger alert-dismissible fade show">{{form.username.errors}}</div>
+                {% endif %}
             </div>
 
             <div class="form-group">
-                <label class="font-weight-bold"> Дата рождения: </label>
-                <input type="date" class="input-field" required>
+                <label for="id_date_of_birth" class="font-weight-bold"> Дата рождения: </label>
+                <input type="date" class="input-field"
+                    id="id_date_of_birth"
+                    name="date_of_birth"
+                    value="{{ form.date_of_birth.value|date:'Y-m-d' }}" required>
+                {% if form.date_of_birth.errors %}
+                    <div class="alert alert-danger alert-dismissible fade show">{{form.date_of_birth.errors}}</div>
+                {% endif %}
             </div>
 
             <div class="form-group">
-                <label class="font-weight-bold"> Адрес электронной почты: </label>
-                <input type="email" class="input-field" placeholder="Введите адрес электронной почты" required>
+                <label for="id_email" class="font-weight-bold"> Адрес электронной почты: </label>
+                <input type="email" class="input-field"
+                    id="id_email"
+                    name="email"
+                    placeholder="Введите адрес электронной почты"
+                    value="{{ form.email.value }}" required>
+                {% if form.email.errors %}
+                    <div class="alert alert-danger alert-dismissible fade show">{{form.email.errors}}</div>
+                {% endif %}
             </div>
 
             <div class="form-group">
-                <label class="font-weight-bold"> Номер телефона: </label>
-                <input type="tel" class="input-field" placeholder="Введите номер телефона" required>
+                <label for="id_phone" class="font-weight-bold"> Номер телефона: </label>
+                <input type="tel" class="input-field"
+                    id="id_phone"
+                    name="phone"
+                    placeholder="Введите номер телефона"
+                    value="{{ form.phone.value }}" required>
+                {% if form.phone.errors %}
+                    <div class="alert alert-danger alert-dismissible fade show">{{form.phone.errors}}</div>
+                {% endif %}
             </div>
             
             <button type="submit" class="btn">Сохранить</button>

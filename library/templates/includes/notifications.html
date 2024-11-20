@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <input type="checkbox" id="alert-toggle" class="alert-toggle">
-                <div class="alert alert-danger alert-dismissible custom-shadow" role="alert">
+                <div class="alert alert-danger " role="alert">
                     {{ form.non_field_errors }}
                     <label for="alert-toggle" class="btn-close" aria-label="Close">×</label>
                 </div>
@@ -13,3 +13,29 @@
         </div>
     </div>
 {% endif %}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            {% if messages %}
+                {% for message in messages %}
+                    {% if message.tags == 'success' %}
+                    <input type="checkbox" id="success-alert-toggle" class="alert-toggle">
+                    <div class="alert alert-success" role="alert">
+                        {{ message }}
+                        <label for="success-alert-toggle" class="btn-close" aria-label="Close">×</label>
+                    </div>
+                    {% endif %}
+                    {% if message.tags == 'error' %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ message }}
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+            <div id="jq-notification" class="position-fixed start-50 translate-middle-x z-3 alert alert-success fade show custom-shadow" style="display: none;" role="alert">
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
