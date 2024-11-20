@@ -29,6 +29,7 @@ header {
     margin: 0;
     padding: 10px;
     display: inline-block;
+    position: relative;
 }
 
 .nav-link {
@@ -47,6 +48,51 @@ header {
 .nav-link:hover {
     background: white;
     box-shadow: 0 0 20px rgb(0, 0, 0, .2);
+}
+
+.submenu {
+    background: rgba(255, 255, 255, 0.79);
+    position: absolute;
+    left: 0;
+    top: 110%;
+    left: 5%;
+    width: 180px;
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 5;
+    border: 2px solid rgba(133, 131, 131, 0.2);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgb(0, 0, 0, .2);
+    padding: 0;
+    list-style: none;
+}
+
+.submenu li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.submenu a {
+    color: black;
+    text-align: left;
+    padding: 12px 15px;
+    font-size: 15px;
+    text-decoration: none;
+    display: block;
+}
+
+.submenu a:hover {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgb(0, 0, 0, .2);
+}
+
+.has-submenu:hover .submenu {
+    opacity: 1;
+    transform: scaleY(1);
 }
 
 .screen {

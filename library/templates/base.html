@@ -17,10 +17,22 @@
       <ul class="nav nav-pills">
         <li class="nav-item"><a href="{% url "main:index" %}" class="nav-link active" aria-current="page">Главная</a></li>
         <li class="nav-item"><a href="{% url "book_catalog:index" %}" class="nav-link">Каталог книг</a></li>
-        <li class="nav-item"><a href="{% url "issuance:index" %}" class="nav-link">Выдача</a></li>
-        <li class="nav-item"><a href="{% url "booking:index" %}" class="nav-link">Бронирование</a></li>
+        {% if not user.is_authenticated %}
         <li class="nav-item"><a href="{% url "users:login" %}" class="nav-link">Вход/Регистрация</a></li>
-        <li class="nav-item"><a href="{% url "users:profile" %}" class="nav-link">Личный кабинет</a></li>
+        {% else %}
+          <li class="nav-item"><a href="{% url "issuance:index" %}" class="nav-link">Выдача</a></li>
+          <li class="nav-item"><a href="{% url "booking:index" %}" class="nav-link">Бронирование</a></li>
+          <li class="nav-item has-submenu">
+            <a href="#" class="nav-link">Личный кабинет</a>
+            <ul class="submenu">
+              <li><a href="{% url "users:profile" %}">Профиль</a></li>
+              {% if user.is_admin or user.is_staff %}
+                <li><a href="{% url "admin:index" %}">Админ-панель</a></li>
+              {% endif %}
+              <li><a href="{% url "users:logout" %}">Выход</a></li>
+            </ul>
+          </li>
+        {% endif %}
       </ul>
     </header>
   

@@ -5,45 +5,102 @@
 {% block content %}
     <div class="container-form">
         <h1>Регистрация</h1>
-        <form class="register-form" action="">
+        <form class="register-form" action="{% url "users:registration" %}" method="post">
+            {% csrf_token %}
+
             <div class="form-group">
-                <label class="font-weight-bold"> Имя пользователя: <span class="text-danger">*</span> </label>
-                <input type="text" class="input-field" placeholder="Введите логин" required>
+                <label for="id_username" class="font-weight-bold"> Имя пользователя: <span class="text-danger">*</span> </label>
+                <input type="text" class="input-field"
+                    value="{% if form.username.value %}{{ form.username.value }}{% endif %}"
+                    id="id_username"
+                    name="username"
+                    placeholder="Введите логин" required>
+                {% if form.username.errors %}
+                    <div class="alert alert-danger alert-dismissible fade show">{{form.username.errors}}</div>
+                {% endif %}
             </div>
             
             <div class="form-group">
-                <label class="font-weight-bold"> Имя: </label>
-                <input type="text" class="input-field" placeholder="Введите имя" required>
+                <label for="id_first_name" class="font-weight-bold"> Имя: <span class="text-danger">*</span> </label>
+                <input type="text" class="input-field"
+                    value="{% if form.first_name.value %}{{ form.first_name.value }}{% endif %}"
+                    id="id_first_name"
+                    name="first_name"
+                    placeholder="Введите имя" required>
+                {% if form.first_name.errors %}
+                    <div class="alert alert-danger alert-dismissible fade show">{{form.first_name.errors}}</div>
+                {% endif %}
             </div>
 
             <div class="form-group">
-                <label class="font-weight-bold"> Фамилия: </label>
-                <input type="text" class="input-field" placeholder="Введите фамилию" required>
+                <label for="id_last_name" class="font-weight-bold"> Фамилия: <span class="text-danger">*</span> </label>
+                <input type="text" class="input-field"
+                    value="{% if form.last_name.value %}{{ form.last_name.value }}{% endif %}"
+                    id="id_last_name"
+                    name="last_name"
+                    placeholder="Введите фамилию" required>
+                {% if form.last_name.errors %}
+                    <div class="alert alert-danger alert-dismissible fade show">{{form.last_name.errors}}</div>
+                {% endif %}
             </div>
 
             <div class="form-group">
-                <label class="font-weight-bold"> Дата рождения: </label>
-                <input type="date" class="input-field" required>
+                <label for="id_date_of_birth" class="font-weight-bold"> Дата рождения: <span class="text-danger">*</span> </label>
+                <input type="date" class="input-field"
+                    value="{% if form.date_of_birth.value %}{{ form.date_of_birth.value }}{% endif %}"
+                    id="id_date_of_birth"
+                    name="date_of_birth" required>
+                {% if form.date_of_birth.errors %}
+                    <div class="alert alert-danger alert-dismissible fade show">{{form.date_of_birth.errors}}</div>
+                {% endif %}
             </div>
 
             <div class="form-group">
-                <label class="font-weight-bold"> Адрес электронной почты: </label>
-                <input type="email" class="input-field" placeholder="Введите адрес электронной почты" required>
+                <label for="id_email" class="font-weight-bold"> Адрес электронной почты: <span class="text-danger">*</span> </label>
+                <input type="email" class="input-field"
+                    value="{% if form.email.value %}{{ form.email.value }}{% endif %}"
+                    id="id_email"
+                    name="email"
+                    placeholder="Введите адрес электронной почты" required>
+                {% if form.email.errors %}
+                    <div class="alert alert-danger alert-dismissible fade show">{{form.email.errors}}</div>
+                {% endif %}
             </div>
 
             <div class="form-group">
-                <label class="font-weight-bold"> Номер телефона: </label>
-                <input type="tel" class="input-field" placeholder="Введите номер телефона" required>
+                <label for="id_phone" class="font-weight-bold"> Номер телефона: <span class="text-danger">*</span> </label>
+                <input type="tel" class="input-field"
+                    value="{% if form.phone.value %}{{ form.phone.value }}{% endif %}"
+                    id="id_phone"
+                    name="phone"
+                    placeholder="Введите номер телефона" required>
+                {% if form.phone.errors %}
+                    <div class="alert alert-danger alert-dismissible fade show">{{form.phone.errors}}</div>
+                {% endif %}
             </div>
 
             <div class="form-group">
-                <label class="font-weight-bold"> Пароль: <span class="text-danger">*</span> </label>
-                <input type="password" class="input-field" placeholder="Введите пароль" required>
+                <label for="id_password1" class="font-weight-bold"> Пароль: <span class="text-danger">*</span> </label>
+                <input type="password" class="input-field"
+                    value="{% if form.password1.value %}{{ form.password1.value }}{% endif %}"
+                    id="id_password1"
+                    name="password1"
+                    placeholder="Введите пароль" required>
+                {% if form.password1.errors %}
+                    <div class="alert alert-danger alert-dismissible fade show">{{form.password1.errors}}</div>
+                {% endif %}
             </div>
 
             <div class="form-group">
-                <label class="font-weight-bold"> Подтверждение пароля: <span class="text-danger">*</span> </label>
-                <input type="password" class="input-field" placeholder="Подтвердите пароль" required>
+                <label for="id_password2" class="font-weight-bold"> Подтверждение пароля: <span class="text-danger">*</span> </label>
+                <input type="password" class="input-field"
+                    value="{% if form.password2.value %}{{ form.password2.value }}{% endif %}"
+                    id="id_password2"
+                    name="password2"
+                    placeholder="Подтвердите пароль" required>
+                {% if form.password2.errors %}
+                    <div class="alert alert-danger alert-dismissible fade show">{{form.password2.errors}}</div>
+                {% endif %}
             </div>
 
             <button type="submit" class="btn">Зарегистрироваться</button>
