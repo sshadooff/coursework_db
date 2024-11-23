@@ -41,6 +41,6 @@
     </div>
 
     <div class="btn-container" style="text-align: center; margin-top: 20px;">
-        <a href="#" class="btn-book">Забронировать</a>
+        <a href="{% url "booking:select_book_instance" book.id %}" class="btn-book">Забронировать</a>
     </div>
 {% endblock content %}

@@ -25,7 +25,7 @@
                 </div>
 
                 <div class="btn-group">
-                    <a href="#" class="btn btn-sm btn-outline-secondary">Забронировать</a>
+                    <a href="{% url "booking:select_book_instance" book.id %}" class="btn btn-sm btn-outline-secondary">Забронировать</a>
                 </div>
             </div>
         {% endfor %}

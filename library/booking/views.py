@@ -1,6 +1,6 @@
-from django.http import HttpResponse
 from django.shortcuts import render
-from django.template import context
+
+from book_catalog.models import BookInstance
 
 
 def booking(request):
@@ -11,9 +11,12 @@ def booking(request):
     return render(request, "booking/booking.html", context)
 
 
-def one_booking(request):
+def select_book_instance(request, book_id):
+    book_instances = BookInstance.objects.filter(book_id=book_id)
+
     context = {
-        "title": "Информация о бронировании",
-        "content": "ИНФОРМАЦИЯ О БРОНИРОВАНИИ"
+        "title": "Выбор экземпляра книги",
+        "content": "ВЫБЕРИТЕ ЭКЗЕМПЛЯР КНИГИ",
+        "book_instances": book_instances
     }
-    return render(request, "booking/one_booking.html", context)
+    return render(request, "booking/select_book_instance.html", context)

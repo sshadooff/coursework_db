@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+    <p>{{ content }}</p>
+
+    <div class="cards-instance">
+        {% for book_instance in book_instances %}
+            <div class="book-instance">
+                <div class="book-details">
+                    <h2>{{ book_instance.book.title }}</h2>
+                    <div class="book-instance-item">
+                        <label>ID:</label>
+                        <span>{{ book_instance.id }}</span>
+                    </div>
+                    <div class="book-instance-item">
+                        <label>Год публикации:</label>
+                        <span>{{ book_instance.publication_year }}</span>
+                    </div>
+                    <div class="book-instance-item">
+                        <label>Издательство:</label>
+                        <span>{{ book_instance.publisher }}</span>
+                    </div>
+                </div>
+
+                <div class="btn-group-btn-book-instance">
+                    <a href="#" class="btn-book-instance btn-sm btn-outline-secondary">Забронировать</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}

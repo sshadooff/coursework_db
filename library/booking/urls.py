@@ -5,5 +5,9 @@ app_name = "booking"
 
 urlpatterns = [
     path("", views.booking, name="index"),
-    path("one_booking/", views.one_booking, name="one_booking")
+    path(
+        "select-book-instance/<int:book_id>",
+        views.select_book_instance,
+        name="select_book_instance",
+    ),
 ]

@@ -1,0 +1,63 @@
+.cards-instance {
+    margin: 0 auto;
+    max-width: 910px;
+    display: flex;
+    flex-direction: column;
+}
+
+.book-instance {
+    position: relative;
+    width: 100%;
+    box-shadow: 0 0 20px #aaa;
+    margin: 15px 0;
+    padding: 20px;
+    border-radius: 8px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.book-instance:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.book-instance:focus {
+    outline: 2px solid #007bff;
+}
+
+.book-details {
+    flex-grow: 1;
+    text-align: left;
+}
+
+.book-instance-item {
+    margin-bottom: 5px;
+}
+
+.btn-group-book-instance {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+.btn-book-instance {
+    display: inline-block;
+    font-size: 16px;
+    padding: 12px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: black;
+    background: rgba(255, 255, 255, 0.79);
+    border: 2px solid rgba(133, 131, 131, 0.2);
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    transition: color 0.2s linear;
+}
+
+.btn-book-instance:hover {
+    background: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+}
