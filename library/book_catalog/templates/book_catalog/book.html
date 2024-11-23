@@ -39,8 +39,13 @@
             </div>
         </div>
     </div>
-
+    
     <div class="btn-container" style="text-align: center; margin-top: 20px;">
-        <a href="{% url "booking:select_book_instance" book.id %}" class="btn-book">Забронировать</a>
+        {% if user.is_authenticated %}
+            <a href="{% url "booking:select_book_instance" book.id %}" class="btn-book">Забронировать</a>
+        {% else %}
+            <a href="{% url 'users:login' %}" class="btn-book">Войдите для бронирования</a>
+        {% endif %}
     </div>
+    
 {% endblock content %}

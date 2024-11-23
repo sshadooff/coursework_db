@@ -52,7 +52,7 @@ def book_book_instance(request, book_instance_id):
 
             messages.success(
                 request,
-                f"{request.user}, Вы успешно забронировали книгу {book_instance.book.title}.",
+                f"{request.user}, Вы успешно забронировали книгу {book_instance.book.title}. До окончания бронирования 7 дней.",
             )
             return redirect("booking:index")
         except Exception as e:

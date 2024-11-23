@@ -25,7 +25,11 @@
                 </div>
 
                 <div class="btn-group">
-                    <a href="{% url "booking:select_book_instance" book.id %}" class="btn btn-sm btn-outline-secondary">Забронировать</a>
+                    {% if user.is_authenticated %}
+                        <a href="{% url "booking:select_book_instance" book.id %}" class="btn btn-sm btn-outline-secondary">Забронировать</a>
+                    {% else %}
+                        <a href="{% url 'users:login' %}" class="btn btn-sm btn-outline-secondary">Забронировать</a>
+                    {% endif %}
                 </div>
             </div>
         {% endfor %}

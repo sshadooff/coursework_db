@@ -33,6 +33,3 @@ class Booking(models.Model):
         db_table = "booking"
         verbose_name = "Бронирование"
         verbose_name_plural = "Бронирования"
-
-    def __str__(self):
-        return f"Бронирование № {self.id} Начало: {self.booking_start_date} Окончание: {self.booking_end_date} Читатель: {self.reader}"
