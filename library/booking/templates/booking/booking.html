@@ -3,5 +3,65 @@
 {% load static %}
 
 {% block content %}
-    <p>{{ content }}</p>
+    <p>{{ content1 }}</p>
+    <div class="cards-bookings">
+        {% for booking in active_bookings %}
+            <div class="booking">
+                <div class="booking-details">
+                    <h2>Бронирование №{{ booking.id }}</h2>
+                    <div class="booking-item">
+                        <label> ID Экземпляра книги:</label>
+                        <span>{{ booking.book_instance.id }}</span>
+                    </div>
+                    <div class="booking-item">
+                        <label> Название:</label>
+                        <span>{{ booking.book_instance.book.title }}</span>
+                    </div>
+                    <div class="booking-item">
+                        <label>Дата начала бронирования:</label>
+                        <span>{{ booking.booking_start_date }}</span>
+                    </div>
+                    <div class="booking-item">
+                        <label>Дата окончания бронирования:</label>
+                        <span>{{ booking.booking_end_date }}</span>
+                    </div>
+                </div>
+
+                <div class="btn-group-btn-booking">
+                    <a href="{% url "booking:cancel_book_book_instance" booking.id %}" class="btn-booking btn-sm btn-outline-secondary">Отменить бронирование</a>
+                </div>
+            </div>
+            {% empty %}
+            <p>Нет активных бронирований.</p>
+        {% endfor %}
+    </div>
+
+    <p style="margin-top: 30px; font-weight: bold;">{{ content2 }}</p>
+    <div class="cards-bookings">
+        {% for booking in past_bookings %}
+            <div class="booking">
+                <div class="booking-details">
+                    <h2>Бронирование №{{ booking.id }}</h2>
+                    <div class="booking-item">
+                        <label>ID Экземпляра книги:</label>
+                        <span>{{ booking.book_instance.id }}</span>
+                    </div>
+                    <div class="booking-item">
+                        <label>Название:</label>
+                        <span>{{ booking.book_instance.book.title }}</span>
+                    </div>
+                    <div class="booking-item">
+                        <label>Дата начала бронирования:</label>
+                        <span>{{ booking.booking_start_date }}</span>
+                    </div>
+                    <div class="booking-item">
+                        <label>Дата окончания бронирования:</label>
+                        <span>{{ booking.booking_end_date }}</span>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+        <p>Нет прошедших бронирований.</p>
+        {% endfor %}
+    </div>
 {% endblock content %}

@@ -16,7 +16,6 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.core.checks import Debug
 from django.urls import include, path
 from django.conf.urls.static import static
 

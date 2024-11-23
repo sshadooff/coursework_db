@@ -25,9 +25,11 @@
                 </div>
 
                 <div class="btn-group-btn-book-instance">
-                    <a href="#" class="btn-book-instance btn-sm btn-outline-secondary">Забронировать</a>
+                    <a href="{% url "booking:book_book_instance" book_instance.id %}" class="btn-book-instance btn-sm btn-outline-secondary">Забронировать</a>
                 </div>
             </div>
+            {% empty %}
+            <p>Нет свободных экземпляров.</p>
         {% endfor %}
     </div>
 {% endblock content %}
