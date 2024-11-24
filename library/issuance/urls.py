@@ -5,5 +5,4 @@ app_name = "issuance"
 
 urlpatterns = [
     path("", views.issuance, name="index"),
-    path("issue/", views.issue, name="issue")
 ]

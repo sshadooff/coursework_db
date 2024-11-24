@@ -3,5 +3,65 @@
 {% load static %}
 
 {% block content %}
-    <p>{{ content }}</p>
+    <p>{{ content1 }}</p>
+    <div class="cards-bookings">
+        {% for issuance in active_issuances %}
+            <div class="booking">
+                <div class="booking-details">
+                    <h2>Выдача №{{ issuance.id }}</h2>
+                    <div class="booking-item">
+                        <label> ID Экземпляра книги:</label>
+                        <span>{{ issuance.book_instance.id }}</span>
+                    </div>
+                    <div class="booking-item">
+                        <label> Название:</label>
+                        <span>{{ issuance.book_instance.book.title }}</span>
+                    </div>
+                    <div class="booking-item">
+                        <label>Дата выдачи:</label>
+                        <span>{{ issuance.date_issue }}</span>
+                    </div>
+                    <div class="booking-item">
+                        <label>Сотрудник:</label>
+                        <span>{{ issuance.employee.first_name }} {{ issuance.employee.last_name }}</span>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <p>Нет выданных книг.</p>
+        {% endfor %}
+    </div>
+
+    <p style="margin-top: 30px; font-weight: bold;">{{ content2 }}</p>
+    <div class="cards-bookings">
+        {% for issuance in past_issuances %}
+            <div class="booking">
+                <div class="booking-details">
+                    <h2>Выдача №{{ issuance.id }}</h2>
+                    <div class="booking-item">
+                        <label>ID Экземпляра книги:</label>
+                        <span>{{ issuance.book_instance.id }}</span>
+                    </div>
+                    <div class="booking-item">
+                        <label>Название:</label>
+                        <span>{{ issuance.book_instance.book.title }}</span>
+                    </div>
+                    <div class="booking-item">
+                        <label>Дата выдачи:</label>
+                        <span>{{ issuance.date_issue }}</span>
+                    </div>
+                    <div class="booking-item">
+                        <label>Дата возврата:</label>
+                        <span>{{ issuance.return_date }}</span>
+                    </div>
+                    <div class="booking-item">
+                        <label>Сотрудник:</label>
+                        <span>{{ issuance.employee.first_name }} {{ issuance.employee.last_name }}</span>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+        <p>Нет возвращенных книг.</p>
+        {% endfor %}
+    </div>
 {% endblock content %}

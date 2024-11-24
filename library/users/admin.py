@@ -21,5 +21,5 @@ class UserAdmin(admin.ModelAdmin):
         if request.user.is_superuser:
             return qs
         if request.user.is_staff:
-            qs = qs.filter(is_staff=False)
+            return qs.filter(id=request.user.id) | qs.filter(is_staff=False)
         return qs
