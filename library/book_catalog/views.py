@@ -1,3 +1,5 @@
+import csv
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 
 from book_catalog.models import Author, BookCatalog, Genre
@@ -43,3 +45,30 @@ def book(request, book_slug):
         "book": book,
     }
     return render(request, "book_catalog/book.html", context)
+
+
+def export_books_to_json(request):
+    books = BookCatalog.objects.all()
+
+    books_list = list(
+        books.values("title", "author", "genre", "age_restriction", "annotation")
+    )
+
+    return JsonResponse(books_list, safe=False)
+
+
+def export_books_to_csv(request):
+    books = BookCatalog.objects.all()
+
+    response = HttpResponse(content_type="text/csv")
+    response["Content-Disposition"] = 'attachment; filename="books.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(["title", "author", "genre", "age_restriction", "annotation"])
+
+    for book in books:
+        writer.writerow(
+            [book.title, book.author, book.genre, book.age_restriction, book.annotation]
+        )
+
+    return response

@@ -81,4 +81,11 @@
             </div>
         {% endfor %}
     </div>
+
+    <button style="background-color: #ddd; color: black; border: none; border-radius: 5px; padding: 10px 20px; font-size: 16px; cursor: pointer; transition: background-color 0.3s, transform 0.2s;" 
+        onclick="window.location.href='{% url 'book_catalog:export_books_to_json' %}'">Выгрузить в JSON</button>
+
+    <button style="background-color: #ddd; color: black; border: none; border-radius: 5px; padding: 10px 20px; font-size: 16px; cursor: pointer; transition: background-color 0.3s, transform 0.2s;"
+        onclick="window.location.href='{% url 'book_catalog:export_books_to_csv' %}'">Выгрузить в CSV</button>
+
 {% endblock content %}
