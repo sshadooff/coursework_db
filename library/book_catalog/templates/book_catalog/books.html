@@ -4,6 +4,52 @@
 
 {% block content %}
     <p>{{ content }}</p>
+
+    <div class="filter-dropdown">
+        <button class="btn btn-secondary" id="filter-button">Фильтры</button>
+        <div class="filter-options" id="filter-options">
+            <form method="GET" action="{% url 'book_catalog:index' %}">
+                <div class="form-group">
+                    <label for="author">Автор:</label>
+                    <select id="author" name="author" class="form-control">
+                        <option value="" {% if not request.GET.author %}selected{% endif %}>Любой</option>
+                        {% for author in authors %}
+                            <option value="{{ author.id }}" {% if author.id|stringformat:"s" == request.GET.author %}selected{% endif %}>
+                                {{ author.first_name }} {{ author.last_name }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="genre">Жанр:</label>
+                    <select id="genre" name="genre" class="form-control">
+                        <option value="" {% if not request.GET.genre %}selected{% endif %}>Любой</option>
+                        {% for genre in genres %}
+                            <option value="{{ genre.id }}" {% if genre.id|stringformat:"s" == request.GET.genre %}selected{% endif %}>
+                                {{ genre.genre }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="age_restriction">Возрастное ограничение:</label>
+                    <select id="age_restriction" name="age_restriction" class="form-control">
+                        <option value="" {% if not request.GET.age_restriction %}selected{% endif %}>Любое</option>
+                        {% for age in age_restrictions %}
+                            <option value="{{ age }}" {% if age|stringformat:"s" == request.GET.age_restriction %}selected{% endif %}>
+                                {{ age }}+
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Применить</button>
+            </form>
+        </div>
+    </div>
+
     <div class="cards">
         {% for book in books %}
             <div class="book">
