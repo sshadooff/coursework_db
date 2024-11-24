@@ -36,8 +36,10 @@ def books(request):
 def book(request, book_slug):
 
     book = BookCatalog.objects.get(slug=book_slug)
+    title = book.title
 
     context = {
+        "title": title,
         "book": book,
     }
     return render(request, "book_catalog/book.html", context)

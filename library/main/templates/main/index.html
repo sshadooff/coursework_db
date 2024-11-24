@@ -2,5 +2,27 @@
 {% load static %}
 
 {% block content %}
-    <p>{{ content }}</p>
+    <div class="news-container">
+        <h1 class="news-title">{{ content1 }}</h1>
+        <div class="quote"> 
+            {{ quote }} 
+        </div>
+
+        <p class="introduction" style="margin-top: 30px;">{{ content2 }}</p>
+
+        <div class="news-list">
+            {% for one_news in news %}
+                <div class="one-news">
+                    <h2 class="news-heading">{{ one_news.heading }}</h2>
+                    <div class="one-news-content">
+                        <span>{{ one_news.news }}</span>
+                    </div>
+                    <div class="one-news-footer">
+                        <label>Дата публикации:</label>
+                        <span>{{ one_news.date_of_publication }}</span>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock content %}
