@@ -4,24 +4,24 @@
 
 {% block content %}
     <p>{{ content1 }}</p>
-    <div class="cards-bookings">
+    <div class="cards-issuances">
         {% for issuance in active_issuances %}
-            <div class="booking">
-                <div class="booking-details">
+            <div class="issuance">
+                <div class="issuance-details">
                     <h2>Выдача №{{ issuance.id }}</h2>
-                    <div class="booking-item">
+                    <div class="issuance-item">
                         <label> ID Экземпляра книги:</label>
                         <span>{{ issuance.book_instance.id }}</span>
                     </div>
-                    <div class="booking-item">
+                    <div class="issuance-item">
                         <label> Название:</label>
                         <span>{{ issuance.book_instance.book.title }}</span>
                     </div>
-                    <div class="booking-item">
+                    <div class="issuance-item">
                         <label>Дата выдачи:</label>
                         <span>{{ issuance.date_issue }}</span>
                     </div>
-                    <div class="booking-item">
+                    <div class="issuance-item">
                         <label>Сотрудник:</label>
                         <span>{{ issuance.employee.first_name }} {{ issuance.employee.last_name }}</span>
                     </div>
@@ -33,28 +33,28 @@
     </div>
 
     <p style="margin-top: 30px; font-weight: bold;">{{ content2 }}</p>
-    <div class="cards-bookings">
+    <div class="cards-issuances">
         {% for issuance in past_issuances %}
-            <div class="booking">
-                <div class="booking-details">
+            <div class="issuance">
+                <div class="issuance-details">
                     <h2>Выдача №{{ issuance.id }}</h2>
-                    <div class="booking-item">
+                    <div class="issuance-item">
                         <label>ID Экземпляра книги:</label>
                         <span>{{ issuance.book_instance.id }}</span>
                     </div>
-                    <div class="booking-item">
+                    <div class="issuance-item">
                         <label>Название:</label>
                         <span>{{ issuance.book_instance.book.title }}</span>
                     </div>
-                    <div class="booking-item">
+                    <div class="issuance-item">
                         <label>Дата выдачи:</label>
                         <span>{{ issuance.date_issue }}</span>
                     </div>
-                    <div class="booking-item">
+                    <div class="issuance-item">
                         <label>Дата возврата:</label>
                         <span>{{ issuance.return_date }}</span>
                     </div>
-                    <div class="booking-item">
+                    <div class="issuance-item">
                         <label>Сотрудник:</label>
                         <span>{{ issuance.employee.first_name }} {{ issuance.employee.last_name }}</span>
                     </div>

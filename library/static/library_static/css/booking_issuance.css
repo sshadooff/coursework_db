@@ -62,14 +62,15 @@
     box-shadow: 0 0 20px rgba(0, 0, 0, .2);
 }
 
-.cards-bookings {
+
+.cards-bookings, .cards-issuances {
     margin: 0 auto;
     max-width: 910px;
     display: flex;
     flex-direction: column;
 }
 
-.booking {
+.booking, .issuance {
     position: relative;
     width: 100%;
     box-shadow: 0 0 20px #aaa;
@@ -82,12 +83,12 @@
     align-items: center;
 }
 
-.booking-details {
+.booking-details, .issuance-details {
     flex-grow: 1;
     text-align: left;
 }
 
-.booking-item {
+.booking-item, .issuance-item {
     margin-bottom: 5px;
 }
 
