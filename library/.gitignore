@@ -1,8 +1,0 @@
-media/
-.vscode/
-book_catalog/__pycache__/
-booking/__pycache__/
-issuance/__pycache__/
-library/__pycache__/
-main/__pycache__/
-users/__pycache__/

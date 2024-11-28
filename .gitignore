@@ -1,1 +1,9 @@
 venv/
+library/media/
+library/.vscode/
+library/book_catalog/__pycache__/
+library/booking/__pycache__/
+library/issuance/__pycache__/
+library/library/__pycache__/
+library/main/__pycache__/
+library/users/__pycache__/
