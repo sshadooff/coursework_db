@@ -82,10 +82,55 @@
         {% endfor %}
     </div>
 
+    <div class="paginator">
+        <ul class="pagination">
+            <div class="page-item-class">
+                <li class="page-item {% if not books.has_previous %}disabled{% endif %}">
+                    <a class="page-link" href="{% if books.has_previous %}
+                        {% url "book_catalog:index" books.previous_page_number %}
+                    {% else %} #
+                    {% endif %}">Предыдущая</a>
+                </li>
+
+                {% for page in books.paginator.page_range %}
+                    {% if page >= books.number|add:-2 and page <= books.number|add:2 %}
+                        <li class="page-item {% if books.number == page%}disabled{% endif %}">
+                            <a class="page-link" href="{% url "book_catalog:index" page %}">{{page}}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+
+                <li class="page-item {% if not books.has_next %}disabled{% endif %}">
+                    <a class="page-link" href="{% if books.has_next %}
+                        {% url "book_catalog:index" books.next_page_number %}
+                    {% else %} #
+                    {% endif %}">Следующая</a>
+                </li>
+            </div>
+        </ul>
+    </div>
+
     <button style="background-color: #ddd; color: black; border: none; border-radius: 5px; padding: 10px 20px; font-size: 16px; cursor: pointer; transition: background-color 0.3s, transform 0.2s;" 
-        onclick="window.location.href='{% url 'book_catalog:export_books_to_json' %}'">Выгрузить в JSON</button>
+        onclick="exportToJson()">Выгрузить в JSON</button>
 
     <button style="background-color: #ddd; color: black; border: none; border-radius: 5px; padding: 10px 20px; font-size: 16px; cursor: pointer; transition: background-color 0.3s, transform 0.2s;"
-        onclick="window.location.href='{% url 'book_catalog:export_books_to_csv' %}'">Выгрузить в CSV</button>
+            onclick="exportToCsv()">Выгрузить в CSV</button>
+
+    <script>
+        function getQueryString() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.toString();
+        }
+
+        function exportToJson() {
+            const queryString = getQueryString();
+            window.location.href = "{% url 'book_catalog:export_books_to_json' %}?" + queryString;
+        }
+
+        function exportToCsv() {
+            const queryString = getQueryString();
+            window.location.href = "{% url 'book_catalog:export_books_to_csv' %}?" + queryString;
+        }
+    </script>
 
 {% endblock content %}

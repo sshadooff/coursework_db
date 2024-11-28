@@ -47,6 +47,7 @@ class BookCatalog(models.Model):
         db_table = "book_catalog"
         verbose_name = "Книгу"
         verbose_name_plural = "Книги"
+        ordering = ["id"]
 
     def __str__(self):
         return self.title
