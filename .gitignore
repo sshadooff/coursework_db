@@ -7,3 +7,4 @@ library/issuance/__pycache__/
 library/library/__pycache__/
 library/main/__pycache__/
 library/users/__pycache__/
+library/book_catalog/templatetags/__pycache__/

@@ -1,0 +1,31 @@
+{% load static %}
+
+{% for book in books %}
+    <div class="book">
+        <div class="cover">
+            {% if book.image %}
+                <a href="{% url "book_catalog:book" book.slug %}">
+                    <img src="{{ book.image.url }}" alt="{{ book.name }}">
+                </a>
+            {% else %}
+                <a href="{% url "book_catalog:book" book.slug %}">
+                    <img src="{% static "library_static/images/image-not-found.jpg" %}" alt="...">
+                </a>
+            {% endif %}
+        </div>
+        <div class="description">
+            <p class="title">{{ book.title }}<br>
+                <span class="author">{{ book.author.first_name }} {{ book.author.last_name }}</span>
+            </p>
+            <p class="age">{{ book.age_restriction }}+</p>
+        </div>
+
+        <div class="btn-group">
+            {% if user.is_authenticated %}
+                <a href="{% url "booking:select_book_instance" book.id %}" class="btn btn-sm btn-outline-secondary">Забронировать</a>
+            {% else %}
+                <a href="{% url 'users:login' %}" class="btn btn-sm btn-outline-secondary">Забронировать</a>
+            {% endif %}
+        </div>
+    </div>
+{% endfor %}

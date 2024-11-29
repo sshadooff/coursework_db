@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load static %}
+{% load books_tags %}
 
 {% block content %}
     <p>{{ content }}</p>
@@ -46,8 +47,34 @@
                 </div>
                 
                 <button type="submit" class="btn btn-primary">Применить</button>
+
+                <button type="submit" name="show_all" value="1" class="btn btn-secondary" style="margin-top: 10px;">Показать все</button>
             </form>
         </div>
+    </div>
+    
+    <div class="paginator">
+        <ul class="pagination">
+            <div class="page-item-class">
+                <li class="page-item {% if not books.has_previous %}disabled{% endif %}">
+                    <a class="page-link" href="{% if books.has_previous %}?{% change_params page=books.previous_page_number %}{% else %} #
+                    {% endif %}">Предыдущая</a>
+                </li>
+
+                {% for page in books.paginator.page_range %}
+                    {% if page >= books.number|add:-2 and page <= books.number|add:2 %}
+                        <li class="page-item {% if books.number == page%}disabled{% endif %}">
+                            <a class="page-link" href="?{% change_params page=page %}">{{page}}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+
+                <li class="page-item {% if not books.has_next %}disabled{% endif %}">
+                    <a class="page-link" href="{% if books.has_next %}?{% change_params page=books.next_page_number %}{% else %} #
+                    {% endif %}">Следующая</a>
+                </li>
+            </div>
+        </ul>
     </div>
 
     <div class="cards">
@@ -82,55 +109,10 @@
         {% endfor %}
     </div>
 
-    <div class="paginator">
-        <ul class="pagination">
-            <div class="page-item-class">
-                <li class="page-item {% if not books.has_previous %}disabled{% endif %}">
-                    <a class="page-link" href="{% if books.has_previous %}
-                        {% url "book_catalog:index" books.previous_page_number %}
-                    {% else %} #
-                    {% endif %}">Предыдущая</a>
-                </li>
+    <a style="background-color: #ddd; color: black; border: none; border-radius: 5px; padding: 10px 20px; font-size: 16px; cursor: pointer; display: inline-block; text-decoration: none;" 
+        href="{% url 'book_catalog:export_books_to_json' %}?{% if request.GET.author %}author={{ request.GET.author }}&{% endif %}{% if request.GET.genre %}genre={{ request.GET.genre }}&{% endif %}{% if request.GET.age_restriction %}age_restriction={{ request.GET.age_restriction }}&{% endif %}{% if request.GET.page %}page={{ request.GET.page }}{% endif %}{% if request.GET.show_all %}show_all={{ request.GET.show_all }}{% endif %}">Выгрузить в JSON</a>
 
-                {% for page in books.paginator.page_range %}
-                    {% if page >= books.number|add:-2 and page <= books.number|add:2 %}
-                        <li class="page-item {% if books.number == page%}disabled{% endif %}">
-                            <a class="page-link" href="{% url "book_catalog:index" page %}">{{page}}</a>
-                        </li>
-                    {% endif %}
-                {% endfor %}
-
-                <li class="page-item {% if not books.has_next %}disabled{% endif %}">
-                    <a class="page-link" href="{% if books.has_next %}
-                        {% url "book_catalog:index" books.next_page_number %}
-                    {% else %} #
-                    {% endif %}">Следующая</a>
-                </li>
-            </div>
-        </ul>
-    </div>
-
-    <button style="background-color: #ddd; color: black; border: none; border-radius: 5px; padding: 10px 20px; font-size: 16px; cursor: pointer; transition: background-color 0.3s, transform 0.2s;" 
-        onclick="exportToJson()">Выгрузить в JSON</button>
-
-    <button style="background-color: #ddd; color: black; border: none; border-radius: 5px; padding: 10px 20px; font-size: 16px; cursor: pointer; transition: background-color 0.3s, transform 0.2s;"
-            onclick="exportToCsv()">Выгрузить в CSV</button>
-
-    <script>
-        function getQueryString() {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.toString();
-        }
-
-        function exportToJson() {
-            const queryString = getQueryString();
-            window.location.href = "{% url 'book_catalog:export_books_to_json' %}?" + queryString;
-        }
-
-        function exportToCsv() {
-            const queryString = getQueryString();
-            window.location.href = "{% url 'book_catalog:export_books_to_csv' %}?" + queryString;
-        }
-    </script>
+    <a style="background-color: #ddd; color: black; border: none; border-radius: 5px; padding: 10px 20px; font-size: 16px; cursor: pointer; display: inline-block; text-decoration: none;" 
+        href="{% url 'book_catalog:export_books_to_csv' %}?{% if request.GET.author %}author={{ request.GET.author }}&{% endif %}{% if request.GET.genre %}genre={{ request.GET.genre }}&{% endif %}{% if request.GET.age_restriction %}age_restriction={{ request.GET.age_restriction }}&{% endif %}{% if request.GET.page %}page={{ request.GET.page }}{% endif %}{% if request.GET.show_all %}show_all={{ request.GET.show_all }}{% endif %}">Выгрузить в CSV</a>
 
 {% endblock content %}

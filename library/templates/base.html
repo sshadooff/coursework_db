@@ -42,5 +42,62 @@
       {% block content %}{% endblock content %}
     </div>
   </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      let page = parseInt(getParameterByName('page')) || 1; 
+      let loading = false; 
+      let hasMoreBooks = true; 
+      let showAll = !!getParameterByName('show_all'); 
+      let author = getParameterByName('author');
+      let genre = getParameterByName('genre');
+      let ageRestriction = getParameterByName('age_restriction');
+  
+      function loadMore() {
+          if (loading || !hasMoreBooks || showAll) return; // Не загружать, если идет процесс загрузки, больше книг нет или show_all установлен
+  
+          loading = true; 
+          let nextPage = page + 1; 
+  
+          // Отправляем GET-запрос для получения следующей страницы книг с текущими параметрами фильтров
+          $.get(`?page=${nextPage}&author=${author || ''}&genre=${genre || ''}&age_restriction=${ageRestriction || ''}`, function(data) {
+              const $response = $('<div>').html(data);
+              const newBooks = $response.find('.book'); 
+  
+              if (newBooks.length > 0) {
+                  $('.cards').append(newBooks); 
+                  page++; 
+              } else {
+                  hasMoreBooks = false; 
+                  $('.screen').off('scroll', scrollHandler); 
+              }
+              loading = false; 
+          }).fail(function() {
+              loading = false; 
+          });
+      }
+  
+      function scrollHandler() {
+          if ($('.screen').scrollTop() + $('.screen').innerHeight() >= $('.screen')[0].scrollHeight - 100) {
+              loadMore(); 
+          }
+      }
+  
+      $('.screen').on('scroll', scrollHandler);
+  
+      function getParameterByName(name) {
+          const url = window.location.href;
+          name = name.replace(/[\[\]]/g, '\\$&');
+          const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+              results = regex.exec(url);
+          if (!results) return null;
+          if (!results[2]) return '';
+          return decodeURIComponent(results[2].replace(/\+/g, ' '));
+      }
+    });
+  </script>
+  
 </body>
 </html>
