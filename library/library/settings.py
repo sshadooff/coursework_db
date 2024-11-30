@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import json
 
 from django.conf.global_settings import (
     AUTH_USER_MODEL,
@@ -44,7 +45,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    
     "main",
     "book_catalog",
     "issuance",
@@ -86,14 +86,19 @@ WSGI_APPLICATION = "library.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# Загрузка конфигурации из файла config.json
+with open(BASE_DIR / "config.json") as config_file:
+    config = json.load(config_file)
+
+# Определение параметров DATABASES с использованием значений из config.json
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "library",
-        "USER": "LibraryAdmin",
-        "PASSWORD": "LibraryAdmin2024",
-        "HOST": "localhost",
-        "PORT": "5432",
+        "ENGINE": config["DATABASE"]["ENGINE"],
+        "NAME": config["DATABASE"]["NAME"],
+        "USER": config["DATABASE"]["USER"],
+        "PASSWORD": config["DATABASE"]["PASSWORD"],
+        "HOST": config["DATABASE"]["HOST"],
+        "PORT": config["DATABASE"]["PORT"],
     }
 }
 

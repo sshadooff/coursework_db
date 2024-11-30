@@ -1,18 +1,22 @@
 import os
+import json
 import datetime
 import shutil
 import yadisk
-import subprocess  # Импортируем subprocess для выполнения команды
+import subprocess
 
 # Параметры подключения к базе данных
-DB_NAME = "library"
-DB_USER = "LibraryAdmin"
-DB_PASSWORD = "LibraryAdmin2024"  # Замените на ваш актуальный пароль
-DB_HOST = "localhost"
-DB_PORT = "5432"
+with open("config.json") as config_file:
+    config = json.load(config_file)
+
+DB_NAME = config["DB_SETTINGS"]["DB_NAME"]
+DB_USER = config["DB_SETTINGS"]["DB_USER"]
+DB_PASSWORD = config["DB_SETTINGS"]["DB_PASSWORD"]
+DB_HOST = config["DB_SETTINGS"]["DB_HOST"]
+DB_PORT = config["DB_SETTINGS"]["DB_PORT"]
 
 # Параметры Яндекс.Диска
-YANDEX_TOKEN = "y0_AgAAAAA1Q1HSAAzXVwAAAAEZ7UNkAAAVBcsFZO5PcK_cEr-lW4_7h-_pvw"
+YANDEX_TOKEN = config["YANDEX_TOKEN"]
 YANDEX_DIR = "/backups/"
 
 # Директория для хранения резервной копии
@@ -33,14 +37,14 @@ def create_backup():
             f"--username={DB_USER}",
             f"--host={DB_HOST}",
             f"--port={DB_PORT}",
-            "--no-password",  # Отключаем пароль, но пароль будет запрашиваться
+            "--no-password",
             "-f",
             BACKUP_FILE,
         ]
 
         # Устанавливаем окружение с паролем
         env = os.environ.copy()
-        env["PGPASSWORD"] = DB_PASSWORD  # Устанавливаем PGPASSWORD для pg_dumpall
+        env["PGPASSWORD"] = DB_PASSWORD
 
         # Выполнение команды pg_dumpall
         subprocess.run(command, env=env, check=True)
