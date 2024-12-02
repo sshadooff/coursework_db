@@ -9,3 +9,4 @@ library/main/__pycache__/
 library/users/__pycache__/
 library/book_catalog/templatetags/__pycache__/
 library/config.json
+library/backup/backup/
