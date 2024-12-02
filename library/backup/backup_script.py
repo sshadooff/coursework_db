@@ -5,8 +5,12 @@ import shutil
 import yadisk
 import subprocess
 
+# Определение пути к config.json
+current_directory = os.path.dirname(__file__)  # Путь к директории скрипта
+config_path = os.path.join(current_directory, "..", "config.json")
+
 # Параметры подключения к базе данных
-with open("config.json") as config_file:
+with open(config_path) as config_file:
     config = json.load(config_file)
 
 DB_NAME = config["DB_SETTINGS"]["DB_NAME"]
@@ -16,7 +20,7 @@ DB_HOST = config["DB_SETTINGS"]["DB_HOST"]
 DB_PORT = config["DB_SETTINGS"]["DB_PORT"]
 
 # Параметры Яндекс.Диска
-YANDEX_TOKEN = config["YANDEX_TOKEN"]
+YANDEX_TOKEN = config["DB_SETTINGS"]["YANDEX_TOKEN"]
 YANDEX_DIR = "/backups/"
 
 # Директория для хранения резервной копии
